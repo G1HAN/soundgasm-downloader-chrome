@@ -1,15 +1,17 @@
 # Soundgasm Downloader
 
-![Mozilla Add-on](https://img.shields.io/amo/v/%7Ba6c647cb-b150-40a4-91ee-aed03c59af77%7D)
-![Mozilla Add-on](https://img.shields.io/amo/rating/%7Ba6c647cb-b150-40a4-91ee-aed03c59af77%7D)
-
 Download audio files from [**soundgasm.net**](https://soundgasm.net/).
 
-Main Features:
+- Adds a Download button on audio pages
+- Adds a Download all button on author pages
+---
 
-- Adds a **Download** button on audio pages
-- Adds a **Download all** button on author pages
-- Filenames contain audio's title and the author's name
-- Popup with list of all open **soundgasm.net** tabs
+I modified [Firefox add-on](https://github.com/deathbydeprecation/soundgasm-downloader) to Chrome extension.
 
-## [Download Add-on](https://addons.mozilla.org/en-US/firefox/addon/soundgasm-audio-downloader/)
+I've never used JavaScript, so I copied the stack overflow code.
+
+I don't know how to run the script after waiting for the page to load completely, so the tab opens and the script runs 100ms later.
+
+Since it simply operates through a timer, a problem may occur depending on a network situation.
+
+If anyone knows a better code, please correct it.
