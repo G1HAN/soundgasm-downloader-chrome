@@ -3,27 +3,27 @@ chrome.runtime.onMessage.addListener(async (request, sender) => {
     const urls = request.urls;
 
     for (const url of urls) {
-
-      await chrome.tabs.create({url: url, selected: false, pinned: false}, myTab => {
-        function listener(tabId, changeInfo, tab) {
-            // make sure the status is 'complete' and it's the right tab
-            if (tabId === myTab.id && changeInfo.status == 'complete') {
-                chrome.scripting.executeScript({
-                  target : {tabId: tab.id, allFrames: true},
-                  files: ["/content-scripts/injected-download.js"],
-                })
-                .then((result)=>{
-                  setTimeout(() => {
-                    chrome.tabs.remove(tabId)
-                    chrome.tabs.onUpdated.removeListener(listener);
-                  }, 100);
-
-                })
-            }
-        };
-        chrome.tabs.onUpdated.addListener(listener);
-    });        
-
+      setTimeout(() => {
+        chrome.tabs.create({url: url, selected: false, pinned: false}, myTab => {
+          function listener(tabId, changeInfo, tab) {
+              // make sure the status is 'complete' and it's the right tab
+              if (tabId === myTab.id && changeInfo.status == 'complete') {
+                  chrome.scripting.executeScript({
+                    target : {tabId: tab.id, allFrames: true},
+                    files: ["/content-scripts/injected-download.js"],
+                  })
+                  .then((result)=>{
+                    setTimeout(() => {
+                      chrome.tabs.remove(tabId)
+                      chrome.tabs.onUpdated.removeListener(listener);
+                    }, 100);
+  
+                  })
+              }
+          };
+          chrome.tabs.onUpdated.addListener(listener);
+      });     
+      }, 100);
     }
     return true;
   }
